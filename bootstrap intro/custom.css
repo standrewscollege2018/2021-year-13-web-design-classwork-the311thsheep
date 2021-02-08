@@ -1,0 +1,16 @@
+/* new background color */
+.bg-darkblue{
+  background-color: #18446b;
+}
+
+.nav-itemr{
+  margin: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .display-3 {
+    font-size: 50px;
+  }
+
+}
