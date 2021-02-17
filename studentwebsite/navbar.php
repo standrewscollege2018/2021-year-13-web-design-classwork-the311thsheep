@@ -11,13 +11,12 @@ $tutor_aa = mysqli_fetch_assoc($tutor_qry);
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
    </button>
+   <!-- stac home button -->
    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-     <a class="navbar-brand" href="#">Hidden brand</a>
+     <a class="navbar-brand" href="index.php">St Andrew's College</a>
      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-<!-- stac home button -->
-       <li class="nav-item active">
-         <a class="nav-link" href="index.php">St Andrew's College<span class="sr-only">(current)</span></a>
-       </li>
+
+
        <!-- tutor dropdown -->
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,9 +29,7 @@ $tutor_aa = mysqli_fetch_assoc($tutor_qry);
               // displays all tutor names as links
               $tutorgroupID = $tutor_aa['tutorgroupID'];
               $tutorcode = $tutor_aa['tutorcode'];
-
-              echo "<a href='index.php?page=tutorgroup&tutorgroupID=$tutorgroupID&tutorcode=$tutorcode'>$tutorcode</a>";
-
+              echo "<a class='dropdown-item' href='index.php?page=tutorgroup&tutorgroupID=$tutorgroupID&tutorcode=$tutorcode'>$tutorcode</a>";
              } while ($tutor_aa = mysqli_fetch_assoc($tutor_qry))
           ?></a>
         </div>

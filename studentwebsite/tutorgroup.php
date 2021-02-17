@@ -17,9 +17,14 @@ if(!isset($_GET['tutorgroupID'])) {
     $tutor_aa = mysqli_fetch_assoc($tutor_qry);
 ?><div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4"><?php $tutorcode ?></h1>
+    <h1 class="display-4"><?php echo $tutorcode; ?></h1>
   </div>
-</div><?php
+</div>
+
+<!-- all results are in a row -->
+<div class="row">
+
+<?php
 
     do {
       // displays student name and photo
@@ -27,10 +32,21 @@ if(!isset($_GET['tutorgroupID'])) {
       $lastname = $tutor_aa['lastname'];
       $photo = $tutor_aa['photo'];
 
-      echo "<img src='images/$photo' class=''>";
-      echo "<p>$firstname $lastname</p>";
+      ?>
+      <!-- student card -->
+        <div class="card col-3" style="">
+                <!-- img -->
+          <img class="card-img-top" src="images/<?php echo $photo; ?>" alt="Card image cap">
+            <div class="card-body">
+                  <!-- name -->
+            <h5 class="card-title"><?php echo "$firstname $lastname"; ?></h5>
+
+          </div>
+        </div>
+              <?php
 
     } while ($tutor_aa = mysqli_fetch_assoc($tutor_qry));
+    ?></div><?php
   }
 }
 
