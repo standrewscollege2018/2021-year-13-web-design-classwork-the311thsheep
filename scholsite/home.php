@@ -6,9 +6,36 @@
   <!-- camera div -->
   <div class="col-6">
     <p class="lead">scan barcode</p>
-      <video id="video" width="640" height="480" style='border: 5px solid #111;' autoplay></video>
+      <!-- <video id="video" width="100%" style='border: 5px solid #111;' autoplay></video>
       <button id="snap">Snap Photo</button>
-      <canvas id="canvas" style='border: 5px solid #111;'></canvas>
+      <canvas id="canvas" style='border: 5px solid #111;'></canvas> -->
+
+      <input type="file" accept="image/jpg" capture="camera" id="recorder">
+<video id="player" controls></video>
+<script>
+  var recorder = document.getElementById('recorder');
+  var player = document.getElementById('player');
+
+  recorder.addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    // Do something with the video file.
+    player.src = URL.createObjectURL(file);
+  });
+</script>
+
+<video id="player" controls autoplay></video>
+<script>
+  const player = document.getElementById('player');
+
+  const constraints = {
+    video: true,
+  };
+
+  navigator.mediaDevices.getUserMedia()
+    .then((stream) => {
+      player.srcObject = stream;
+    });
+</script>
 </div>
 
 
@@ -41,7 +68,7 @@
     <!-- student card -->
             <div class="card col-4 bg-success" style="">
               <!-- img -->
-              <img class="card-img-top" src="images/<?php echo $image; ?>" alt="Card image cap">
+              <img class="card-img-top" src="uploads/<?php echo $name; ?>" alt="<?php echo $image; ?>">
               <div class="card-body">
                 <!-- name -->
                 <h5 class="card-title"><?php echo "$name $barcode"; ?></h5>
@@ -58,29 +85,13 @@
    </div>
      <!-- add item div -->
      <div class="">
-       <h1 class="display-4">Add new item</h1>
-       <form class="form-inline my-2 my-lg-0" action="index.php?page=insertitem" method="post">
-         <input required type="text" name="item_name" placeholder="item name">
-         <input required type="text" name="item_code" placeholder="item barcode">
-         <input required type="text" name="item_image" placeholder="item image">
-         <input required type="radio" name="item_cert" placeholder="item certification">
-         <button type="btn btn-outline-success my-2 my-sm-0" name="submit_button">Submit</button>
-       </form>
-       <!-- form errorcodes -->
-       <?php
-       if (isset($_GET['error'])) {
-         $error = $_GET['error'];
-         echo("<p> insert error= $error </p>");
-       } else {
-         echo("<p> new record created succesfully</p>");
-       }
-?>
+       <?php include "enteritem.php"; ?>
      </div>
   </div>
 </div>
 
 
-<script>
+<!-- <script>
 
 
 		// Put event listeners into place
@@ -97,7 +108,7 @@
 			// Put video listeners into place
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-					//video.src = window.URL.createObjectURL(stream);
+					video.src = window.URL.createObjectURL(stream);
 					video.srcObject = stream;
                     video.play();
                 });
@@ -126,5 +137,5 @@
 				context.drawImage(video, 0, 0, 640, 480);
 			});
 		}, false);
-</script>
+</script> -->
 </html>
